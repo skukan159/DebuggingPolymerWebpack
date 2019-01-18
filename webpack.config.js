@@ -89,22 +89,8 @@ module.exports = function (env) {
                     "use": [{
                         loader: 'html-loader',
                     }]
-                },
-                {
-                    test: /\.json$/,
-                    use: 'json-loader'
-                },
-                {
-                    test: /\.(png|svg|jpg|gif)$/,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: '/img/[name].[ext]'
-                            }
-                        }
-                    ]
                 }
+               
             ]
         },
        
