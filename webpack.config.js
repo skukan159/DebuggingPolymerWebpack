@@ -27,6 +27,12 @@ const polyfills = [
         to: path.join(__dirname, 'wwwroot'),
         flatten: true
     },
+        //Not used right now but might be useful in the future
+        {
+            from: path.resolve(`${webcomponentsjs}/custom-elements-es5-adapter.js`),
+            to: path.join(__dirname, 'wwwroot'),
+            flatten: true
+        },
 ];
 
 module.exports = function (env) {
