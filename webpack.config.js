@@ -14,7 +14,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //TerserPlugin is used for minification without transpiling code
 //const TerserPlugin = require('terser-webpack-plugin')
 //UglifyJS is used for minification with transpiling code
-//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 //const { BabelMultiTargetPlugin } = require('webpack-babel-multi-target-plugin');//test
 
@@ -64,12 +64,12 @@ module.exports = function (env) {
                 }
             },
             runtimeChunk: 'single',
-            /*minimize: true,
+          /*  minimize: true,
             minimizer: [
                  new UglifyJsPlugin()
              ],
              usedExports: true,
-             sideEffects: true*/
+             sideEffects: false*/
         },
 
         module: {
@@ -80,14 +80,15 @@ module.exports = function (env) {
                    exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
-                        options: {
+                       /* options: {
                             presets: ['@babel/preset-env', { exclude: ["transform-classes"] }],
                             plugins: [
                                 "@babel/plugin-proposal-class-properties",
                                 "@babel/plugin-proposal-object-rest-spread",
-                                "@babel/plugin-syntax-dynamic-import"
+                                "@babel/plugin-syntax-dynamic-import",
+                                "@babel/plugin-dynamic-import-webpack"
                             ]
-                        }
+                        }*/
                     }
                 },
                 {
