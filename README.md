@@ -1,9 +1,8 @@
 # DebuggingPolymerWebpack
-Repository containing a reproduced bug created from transpiling a Polymer project with babel using webpack.
+Repository created with the purpose of fixing bugs related to transpiling and minifying Polymer project code using Webpack. It contains a reproduction of a bug.
 
-To test the project run npm install and then run npm serve. You will see the bug: "Uncaught TypeError: Class constructor PolymerElement cannot be invoked without 'new'"
+To test the project run npm install and then run npm serve. The project works initially because the bug related to transpiling has been fixed, but if you try to uncomment the part of code that minimizes the bundle, you will get an error saying: "Unexpected token: name (extends)" and another error saying: "Unexpected token: keyword (const)".
 
-To get rid of the bug, all you need to do is comment out transpiling with babel configuration inside of webpack. The problem is that transpiling is needed for minification and support for older browsers, so the conclusion is that the bug might be solved by modifying the options for babel loader.
+An educated guess would be that something is not correct with the way the code is being transpiled.
 
-Another bug is that you cannot run the npm run server command or node server.js without getting an error. It is still unclear why that is happening.
-
+Another bug is that you cannot run the npm run server command or node server.js without getting an error. That means you should use npm run serve for testing.
