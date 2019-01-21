@@ -49,7 +49,7 @@ module.exports = function (env) {
             filename: "[name].[contenthash].js",  
             chunkFilename: '[name].[contenthash].js',
         },
-        //Added to fix an error caused by returning promises while lazy loading chunks from app shell base
+        //Added to fix an error caused by returning promises while lazy loading chunks
         node: {
             dns: 'mock',
             net: 'mock'
@@ -65,12 +65,12 @@ module.exports = function (env) {
                 }
             },
             runtimeChunk: 'single',
-           /* minimize: true,
+            minimize: true,
             minimizer: [
                  new UglifyJsPlugin()
              ],
              usedExports: true,
-             sideEffects: false*/
+             sideEffects: false
         },
 
         module: {
@@ -104,13 +104,13 @@ module.exports = function (env) {
         },
 
         plugins: [
-            /*new TerserPlugin({
+            /*new TerserPlugin({ //Does not work
                 parallel: true,
                 terserOptions: {
                     ecma: 6,
                 },
             }),*/
-            //new MinifyPlugin(),
+            //new MinifyPlugin(), //Does not work
             new webpack.HashedModuleIdsPlugin(),
             new HtmlWebpackPlugin({
                 template: 'src/index.html'}),
