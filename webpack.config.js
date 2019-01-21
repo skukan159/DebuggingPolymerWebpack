@@ -1,6 +1,4 @@
-﻿
-//Basic features and plugins offered by webpack
-const webpack = require('webpack');
+﻿const webpack = require('webpack');
 const path = require('path');
 //Copies files from src to wwwroot
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -14,9 +12,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //TerserPlugin is used for minification without transpiling code
 //const TerserPlugin = require('terser-webpack-plugin')
 //UglifyJS is used for minification with transpiling code
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //Not working at the moment
 
-//const { BabelMultiTargetPlugin } = require('webpack-babel-multi-target-plugin');//test
+const BabiliPlugin = require("babili-webpack-plugin"); //testing, UglifyJs alternative
+const MinifyPlugin = require("babel-minify-webpack-plugin"); //testing, UglifyJs alternative
+const fs = require('fs'); //testing
+//const { BabelMultiTargetPlugin } = require('webpack-babel-multi-target-plugin');//testing
 
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
 
@@ -48,7 +49,7 @@ module.exports = function (env) {
             filename: "[name].[contenthash].js",  
             chunkFilename: '[name].[contenthash].js',
         },
-        //Added to fix an error regarding returning promises while lazy loading chunks from app shell base
+        //Added to fix an error caused by returning promises while lazy loading chunks from app shell base
         node: {
             dns: 'mock',
             net: 'mock'
@@ -64,7 +65,7 @@ module.exports = function (env) {
                 }
             },
             runtimeChunk: 'single',
-          /*  minimize: true,
+           /* minimize: true,
             minimizer: [
                  new UglifyJsPlugin()
              ],
@@ -74,21 +75,14 @@ module.exports = function (env) {
 
         module: {
             rules: [
-
                 {
                     test: /\.js$/,
-                   exclude: /node_modules/,
+                   //exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
                        /* options: {
-                            presets: ['@babel/preset-env', { exclude: ["transform-classes"] }],
-                            plugins: [
-                                "@babel/plugin-proposal-class-properties",
-                                "@babel/plugin-proposal-object-rest-spread",
-                                "@babel/plugin-syntax-dynamic-import",
-                                "@babel/plugin-dynamic-import-webpack"
-                            ]
-                        }*/
+                            ...JSON.parse(fs.readFileSync(path.resolve(__dirname, '.babelrc'))),
+                          },*/
                     }
                 },
                 {
@@ -116,6 +110,7 @@ module.exports = function (env) {
                     ecma: 6,
                 },
             }),*/
+            //new MinifyPlugin(),
             new webpack.HashedModuleIdsPlugin(),
             new HtmlWebpackPlugin({
                 template: 'src/index.html'}),
