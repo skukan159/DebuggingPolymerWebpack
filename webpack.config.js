@@ -3,7 +3,7 @@ const path = require('path');
 //Copies files from src to wwwroot
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //Generates Service Workers
-const WorkboxPlugin = require('workbox-webpack-plugin');
+//const WorkboxPlugin = require('workbox-webpack-plugin');
 //Used for cleaning wwwroot folder
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 //Used to generate html file
@@ -14,9 +14,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //UglifyJS is used for minification with transpiling code
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //Not working at the moment
 
-const BabiliPlugin = require("babili-webpack-plugin"); //testing, UglifyJs alternative
-const MinifyPlugin = require("babel-minify-webpack-plugin"); //testing, UglifyJs alternative
-const fs = require('fs'); //testing
+//const BabiliPlugin = require("babili-webpack-plugin"); //testing, UglifyJs alternative
+//const MinifyPlugin = require("babel-minify-webpack-plugin"); //testing, UglifyJs alternative
+//const fs = require('fs'); //testing
 //const { BabelMultiTargetPlugin } = require('webpack-babel-multi-target-plugin');//testing
 
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
@@ -67,7 +67,9 @@ module.exports = function (env) {
             runtimeChunk: 'single',
             minimize: true,
             minimizer: [
-                 new UglifyJsPlugin()
+                 new UglifyJsPlugin({
+                    test: /\.js(\?.*)?$/i,
+                 })
              ],
              usedExports: true,
              sideEffects: false
@@ -77,7 +79,7 @@ module.exports = function (env) {
             rules: [
                 {
                     test: /\.js$/,
-                   //exclude: /node_modules/,
+                   //exclude: /node_modules/, commented out in attempt to fix Uglifyjs error
                     use: {
                         loader: 'babel-loader',
                        /* options: {

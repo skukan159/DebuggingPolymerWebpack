@@ -1,5 +1,5 @@
 {
-  "name": "MyWorkshopHub",
+  "name": "polymer-webpack-boilerplate",
   "sideEffects": false,
   "version": "1.0.0",
   "private": true,
@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.2.1",
+    "@webcomponents/webcomponentsjs": "^2.2.1"
   },
   "engines": {
     "node": ">=8.0"
