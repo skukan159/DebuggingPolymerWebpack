@@ -1,14 +1,14 @@
 ﻿import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
 
 //maybe throw out - polymer 2
-let internalActionsMixin = (superClass) =>
+let internalMixinA = (superClass) =>
     class extends superClass { 
         constructor() {
             super();
-            console.log('Internal actions mixin constructed');
+            console.log('Mixin A constructed');
         }
 
     }
 
-export const ActionsMixin = dedupingMixin(internalActionsMixin);
+export const mixinA = dedupingMixin(internalMixinA);
 

@@ -1,6 +1,6 @@
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<dom-module id="app-shell-base-style">
+$_documentContainer.innerHTML = `<dom-module id="app-shell-style">
 
     <template>
 

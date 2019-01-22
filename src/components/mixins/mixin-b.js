@@ -1,16 +1,17 @@
 
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
-import { ActionsMixin } from 'include/mixins/actions-mixin';
+import { mixinA } from './mixin-a';
 
     
 
-let internalLocalizeMixin = (base) => 
+let internalMixinB = (base) => 
          
 
-    class extends ActionsMixin(base) {
+    class extends mixinA(base) {
 
         constructor() {
             super();
+            console.log('Mixin B contructed');
         }
 
 
@@ -27,5 +28,5 @@ let internalLocalizeMixin = (base) =>
     }
 
         
-export const LocalizeMixin = dedupingMixin(internalLocalizeMixin);
+export const mixinB = dedupingMixin(internalMixinB);
        

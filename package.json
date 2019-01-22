@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack-dev-server --open",
-    "server": "node server.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "build-dev": "webpack --config webpack.dev.js",
+    "dev-server": "node server.js",
     "watch": "webpack --watch"
   },
   "devDependencies": {

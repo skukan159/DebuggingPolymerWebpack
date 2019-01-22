@@ -1,14 +1,14 @@
 import { PolymerElement, html } from '@polymer/polymer';
 
 
-import { LocalizeMixin } from 'include/mixins/localize-mixin.js';
-import 'include/app-shell/app-shell-base-style.js';
+import { mixinB } from 'components/mixins/mixin-b.js';
+import 'components/app-shell/app-shell-style.js';
 
-export class AppShellBase extends LocalizeMixin(PolymerElement) {
+export class AppShellBase extends mixinB(PolymerElement) {
 
     constructor() {
         super();
-        
+        console.log('App shell contructor');
     }
 
     static get template() {
@@ -23,7 +23,7 @@ export class AppShellBase extends LocalizeMixin(PolymerElement) {
         `;
     }
   
-    static get is() { return 'app-shell-base'; }
+    static get is() { return 'app-shell'; }
   
     static get properties() {
         return {
@@ -32,5 +32,5 @@ export class AppShellBase extends LocalizeMixin(PolymerElement) {
     }
 
   }
-window.customElements.define('app-shell-base', AppShellBase);
+window.customElements.define(AppShellBase.is, AppShellBase);
 
